@@ -34,6 +34,8 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        app.onBatteryStatus();
+        app.getDeviceLocation();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -45,5 +47,36 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
-    }
+    },
+    onBatteryStatus: function () { 
+       // MacOS and Android only
+        navigator.getBattery().then(function(battery) {
+
+            document.getElementById('battery-percentage').innerHTML = Math.floor(battery.level * 100) + '% remaining';
+            battery.onlevelchange = function() {
+              document.getElementById('battery-percentage').innerHTML = Math.floor(this.level * 100) + '% remaining';
+            };
+          });
+     },
+     getDeviceLocation: function () {
+        console.log('device location');
+        function onSuccess (position) {
+            
+            console.log(position);
+
+            var lat = position.coords.latitude;
+            var long = position.coords.longitude;
+            
+            document.getElementById('lat').innerHTML = lat;
+            document.getElementById('long').innerHTML = long;
+        }
+
+        function onError (error) {
+            console.log(error.message);
+            document.getElementById('message').innerHTML = 'Geolocation error: ' + error.message;
+        }
+
+        navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 10000, enableHighAccuracy: true});
+        // navigator.geolocation.getCurrentPosition(success, error);
+     }
 };

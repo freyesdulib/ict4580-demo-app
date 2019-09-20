@@ -46,12 +46,19 @@
     <div class="app">
         <h1>ICT4580 Demo App</h1>
         <div id="deviceready" class="blink">
+            <p id="message"></p>
             <p class="event listening">Connecting to Device</p>
             <p class="event received">Device is Ready</p>
+            <h2>Battery Percentage</h2>
+            <p id="battery-percentage"></p>
+            <h2>Device Location</h2>
+            <p>Latitude: <span id="lat"></span></p>
+            <p>Longitude: <span id="long"></span></p>
         </div>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <!--<script type="text/javascript" src="js/battery_status.js"></script>-->
     <script type="text/javascript">
         app.initialize();
     </script>
