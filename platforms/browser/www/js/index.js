@@ -62,8 +62,6 @@ var app = {
         console.log('device location');
         function onSuccess (position) {
             
-            console.log(position);
-
             var lat = position.coords.latitude;
             var long = position.coords.longitude;
             
@@ -76,7 +74,7 @@ var app = {
             document.getElementById('message').innerHTML = 'Geolocation error: ' + error.message;
         }
 
-        navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge: 0, timeout: 10000, enableHighAccuracy: true});
+        navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge: 0, timeout: 60000, enableHighAccuracy: true});
         // navigator.geolocation.getCurrentPosition(success, error);
      }
 };
