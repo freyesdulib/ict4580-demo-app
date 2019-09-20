@@ -76,7 +76,7 @@ var app = {
             document.getElementById('message').innerHTML = 'Geolocation error: ' + error.message;
         }
 
-        navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 10000, enableHighAccuracy: true});
+        navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge: 0, timeout: 10000, enableHighAccuracy: true});
         // navigator.geolocation.getCurrentPosition(success, error);
      }
 };
