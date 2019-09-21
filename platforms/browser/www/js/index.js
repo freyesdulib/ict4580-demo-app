@@ -76,5 +76,20 @@ var app = {
 
         navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge: 0, timeout: 60000, enableHighAccuracy: true});
         // navigator.geolocation.getCurrentPosition(success, error);
+     },
+     takePicture: function () {
+        
+        var cameraOptions = {
+            sourceType: Camera.PictureSourceType.CAMERA,
+            saveToPhotoAlbum: true,
+            allowEdit: true
+        };
+        
+        navigator.camera.getPicture(function (result) {
+            console.log(result);
+            document.getElementById('image').src = result;
+        }, function (error) {
+            console.log(error);
+        }, cameraOptions);    
      }
 };
